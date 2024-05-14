@@ -46,7 +46,7 @@ const App = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [submittedPhoneNumber, setSubmittedPhoneNumber] = useState('');
   const [headers, setHeaders] = useState(null);
-  const [statusCode, setStatusCode] = useState(null); // Add status code state
+  const [statusCode, setStatusCode] = useState(null); 
   const [phoneNumberError, setPhoneNumberError] = useState(false);
   const [open, setOpen] = useState(false);
   const [submittedData, setSubmittedData] = useState([]);
@@ -66,7 +66,7 @@ const App = () => {
     try {
       const response = await axios.post('https://chimpu.xyz/api/post.php', { phonenumber: phoneNumber });
       setHeaders(response.headers);
-      setStatusCode(response.status); // Set status code
+      setStatusCode(response.status);
       setSubmittedPhoneNumber(phoneNumber);
       setPhoneNumberError(false);
       setOpen(true);
