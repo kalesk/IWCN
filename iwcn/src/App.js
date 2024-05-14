@@ -46,6 +46,7 @@ const App = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [submittedPhoneNumber, setSubmittedPhoneNumber] = useState('');
   const [headers, setHeaders] = useState(null);
+  const [statusCode, setStatusCode] = useState(null); // Add status code state
   const [phoneNumberError, setPhoneNumberError] = useState(false);
   const [open, setOpen] = useState(false);
   const [submittedData, setSubmittedData] = useState([]);
@@ -65,6 +66,7 @@ const App = () => {
     try {
       const response = await axios.post('https://chimpu.xyz/api/post.php', { phonenumber: phoneNumber });
       setHeaders(response.headers);
+      setStatusCode(response.status); // Set status code
       setSubmittedPhoneNumber(phoneNumber);
       setPhoneNumberError(false);
       setOpen(true);
@@ -141,6 +143,9 @@ const App = () => {
                     Response Headers
                   </Typography>
                   <pre>{data.headers ? JSON.stringify(data.headers, null, 2) : "No headers"}</pre>
+                  <Typography variant="h5" gutterBottom style={{ marginTop: '1.5rem' }}>
+                    Status Code: {statusCode}
+                  </Typography>
                   <IconButton onClick={() => handleDelete(index)} aria-label="delete" color="secondary">
                     <DeleteIcon />
                   </IconButton>
@@ -160,6 +165,9 @@ const App = () => {
             Response Headers
           </Typography>
           <pre>{headers ? JSON.stringify(headers, null, 2) : "No headers"}</pre>
+          <Typography variant="h5" gutterBottom style={{ marginTop: '1.5rem' }}>
+            Status Code: {statusCode}
+          </Typography>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
